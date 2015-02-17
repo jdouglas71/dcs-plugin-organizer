@@ -12,23 +12,24 @@ License: GPL
 
 function dcs_disable_landing_pages_plugin($plugins)
 {
+	//error_log( $_SERVER['REQUEST_URI'].PHP_EOL,3,plugin_dir_path(__FILE__)."dcs-plugin-organizer.log" );
 	//Disable the landing page plugin
     if(strpos($_SERVER['REQUEST_URI'], '/go/ppc-landing/') === FALSE AND strpos($_SERVER['REQUEST_URI'], '/wp-admin/') === FALSE) 
 	{
         $key = array_search( 'landing-pages/landing-pages.php' , $plugins );
         if ( false !== $key ) 
 		{
-			error_log( "Unsetting the Landing Page plugin for page: ".$_SERVER['REQUEST_URI'], 3, plugin_dir_path(__FILE__)."/dcs-plugin-organizer.log".PHP_EOL );
+			//error_log( "Unsetting the Landing Page plugin for page: ".$_SERVER['REQUEST_URI'].PHP_EOL, 3, plugin_dir_path(__FILE__)."/dcs-plugin-organizer.log" );
 			unset( $plugins[$key] );
 		}
     }
 
-	if(strpos($_SERVER['REQUEST_URI'], '/product/ripcord/') === TRUE AND strpos($_SERVER['REQUEST_URI'], '/wp-admin/') === FALSE) 
+	if(strpos($_SERVER['REQUEST_URI'], '/product/ripcord/') !== FALSE AND strpos($_SERVER['REQUEST_URI'], '/wp-admin/') === FALSE) 
 	{
 		$key = array_search( 'wp-slimstat/wp-slimstat.php' , $plugins );
 		if ( false !== $key ) 
 		{
-			error_log( "Unsetting the SlimStat plugin for page: ".$_SERVER['REQUEST_URI'], 3, plugin_dir_path(__FILE__)."/dcs-plugin-organizer.log".PHP_EOL );
+			//error_log( "Unsetting the SlimStat plugin for page: ".$_SERVER['REQUEST_URI'].PHP_EOL, 3, plugin_dir_path(__FILE__)."/dcs-plugin-organizer.log" );
 			unset( $plugins[$key] );
 		}
 	}
@@ -36,4 +37,3 @@ function dcs_disable_landing_pages_plugin($plugins)
 	return $plugins;
 }
 add_filter( 'option_active_plugins', 'dcs_disable_landing_pages_plugin' );
-
