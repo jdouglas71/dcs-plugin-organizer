@@ -17,7 +17,7 @@ function dcs_disable_landing_pages_plugin($plugins)
         $key = array_search( 'landing-pages/landing-pages.php' , $plugins );
         if ( false !== $key ) 
 		{
-			error_log( "Unsetting the Landing Page plugin for page: ".$_SERVER['REQUEST_URI'], 3, plugin_dir_path(__FILE__)."/dcs-plugin-organizer.log" );
+			//error_log( "Unsetting the Landing Page plugin for page: ".$_SERVER['REQUEST_URI'], 3, plugin_dir_path(__FILE__)."/dcs-plugin-organizer.log" );
 			unset( $plugins[$key] );
 		}
     }
